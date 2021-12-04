@@ -32,9 +32,9 @@ from functools import partial
 
 CONFIG = {
     'SEED': 13,
-    'DATA_PATH':'/scratch/va2134/medical-cv-csci-ga-2271/datasets/CheXpert-v1.0-small/',
-    'DS_BASE_PATH':'/scratch/va2134/medical-cv-csci-ga-2271/datasets/',
-    'BASE_PATH':'/scratch/va2134/medical-cv-csci-ga-2271/models/contrastive/',
+    'DATA_PATH':'/scratch/va2134/datasets/CheXpert-v1.0-small/',
+    'DS_BASE_PATH':'/scratch/va2134/datasets/',
+    'BASE_PATH':'/scratch/va2134/models/contrastive/',
     'WANDB_PROJECT':'medical-cv',
     'MAX_EPOCHS':50,
     'BATCH_SIZE':32,

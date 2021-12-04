@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#SBATCH --account=csci_ga_2271
+#SBATCH --partition=interactive
 #SBATCH --job-name=jupyter
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=2

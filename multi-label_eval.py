@@ -30,8 +30,8 @@ DATA_PATH = "/scratch/va2134/datasets/CheXpert-v1.0-small/"
 BATCH_SIZE = 32
 SEED = 13
 NUM_CLASS = 5
-MAX_EPOCHS = 20
-MODEL_SAVE_NAME = 'multi-label-scratch-resnet18'
+MAX_EPOCHS = 10
+MODEL_SAVE_NAME = 'multi-label-contrastive-resnet18'
 SAVE_PATH = '/scratch/va2134/models/finetuning/'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

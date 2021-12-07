@@ -14,6 +14,7 @@ from torchvision.models.resnet import resnet18
 import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
 from sklearn.metrics import roc_auc_score
+from barlow.py import  BarlowTwins
 
 import torch 
 from PIL import Image
@@ -29,7 +30,7 @@ DATA_PATH = "/scratch/va2134/datasets/CheXpert-v1.0-small/"
 BATCH_SIZE = 32
 SEED = 13
 NUM_CLASS = 5
-MAX_EPOCHS = 10
+MAX_EPOCHS = 20
 MODEL_SAVE_NAME = 'multi-label-scratch-resnet18'
 SAVE_PATH = '/scratch/va2134/models/finetuning/'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -128,8 +129,10 @@ model_save_checkpoint = pl.callbacks.ModelCheckpoint(
     mode = 'min',
 )
 
+encoder =  BarlowTwins.load_from_checkpoint("/scratch/va2134/models/contrastive/models/barlow-resnet18-epoch=41-val_loss=10.83.ckpt").encoder
+
 model = CheXpertModule(
-    model = resnet18(pretrained= False),
+    model = encoder,
     imratio = train_set.imratio_list
 )
 

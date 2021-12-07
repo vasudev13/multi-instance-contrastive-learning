@@ -85,12 +85,12 @@ class CheXpertModule(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         loss,_ = self.shared_step(batch)
-        self.log({"train_loss": loss.item()}, on_step = True, on_epoch = False)
+        self.log("train_loss", loss.item(), on_step = True, on_epoch = False)
         return loss
 
     def validation_step(self, batch, batch_idx):
         loss,(y,ȳ) = self.shared_step(batch)
-        self.log({"val_loss": loss.item()}, on_step = False, on_epoch = True)
+        self.log("val_loss", loss.item(), on_step = False, on_epoch = True)
         return loss,(y,ȳ)
     
     def validation_epoch_end(self,val_step_outputs):
@@ -105,7 +105,7 @@ class CheXpertModule(pl.LightningModule):
       predictions = np.concatenate(predictions)
       val_loss = np.mean(np.asarray(losses))
       val_auc =  self.roc_auc_score(ground_truth, predictions) 
-      self.log({"val_roc_auc_score": val_auc}, on_step = False, on_epoch = True)
+      self.log("val_roc_auc_score", val_auc, on_step = False, on_epoch = True)
 
     def configure_optimizers(self):
         optimizer = PESG(model, 

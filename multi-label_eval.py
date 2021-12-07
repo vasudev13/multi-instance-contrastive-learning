@@ -26,7 +26,7 @@ import torch.nn as nn
 import numpy as np
 
 DATA_PATH = "/scratch/va2134/datasets/CheXpert-v1.0-small/"
-BATH_SIZE = 32
+BATCH_SIZE = 32
 SEED = 13
 NUM_CLASS = 5
 MAX_EPOCHS = 10

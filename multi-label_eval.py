@@ -30,7 +30,7 @@ DATA_PATH = "/scratch/va2134/datasets/CheXpert-v1.0-small/"
 BATCH_SIZE = 32
 SEED = 13
 NUM_CLASS = 5
-MAX_EPOCHS = 10
+MAX_EPOCHS = 5
 MODEL_SAVE_NAME = 'multi-label-contrastive-resnet18'
 SAVE_PATH = '/scratch/va2134/models/finetuning/'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -55,8 +55,8 @@ valid_set = CheXpert(csv_path = f'{DATA_PATH}/valid.csv',
                      class_index = -1, 
                      verbose = False
                     )
-train_loader =  torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, num_workers=2, shuffle=True)
-val_loader =  torch.utils.data.DataLoader(valid_set, batch_size=BATCH_SIZE, num_workers=2, shuffle=False)
+train_loader =  torch.utils.data.DataLoader(train_set, batch_size=BATCH_SIZE, num_workers=8, shuffle=True)
+val_loader =  torch.utils.data.DataLoader(valid_set, batch_size=BATCH_SIZE, num_workers=8, shuffle=False)
 
 class CheXpertModule(pl.LightningModule):
     def __init__(

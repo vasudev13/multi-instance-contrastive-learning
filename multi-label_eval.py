@@ -90,7 +90,7 @@ class CheXpertModule(pl.LightningModule):
 
     def validation_step(self, batch, batch_idx):
         loss,(y,ȳ) = self.shared_step(batch)
-        self.log({"val_loss": loss.item()} on_step = False, on_epoch = True)
+        self.log({"val_loss": loss.item()}, on_step = False, on_epoch = True)
         return loss,(y,ȳ)
     
     def validation_epoch_end(self,val_step_outputs):

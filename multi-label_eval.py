@@ -105,7 +105,7 @@ class CheXpertModule(pl.LightningModule):
       predictions = np.concatenate(predictions)
       val_loss = np.mean(np.asarray(losses))
       val_auc =  self.roc_auc_score(ground_truth, predictions) 
-      self.log({"val_roc_auc_score": val_auc} on_step = False, on_epoch = True)
+      self.log({"val_roc_auc_score": val_auc}, on_step = False, on_epoch = True)
 
     def configure_optimizers(self):
         optimizer = PESG(model, 

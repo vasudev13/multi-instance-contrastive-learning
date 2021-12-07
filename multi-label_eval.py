@@ -99,7 +99,7 @@ class CheXpertModule(pl.LightningModule):
       losses = []
       for (loss,(y,ȳ)) in val_step_outputs:
         losses.append(loss.item())
-        ground_truth.append(y.numpy())
+        ground_truth.append(y.cpu().numpy())
         predictions.append(ȳ.cpu().detach().numpy())
       ground_truth = np.concatenate(ground_truth)
       predictions = np.concatenate(predictions)

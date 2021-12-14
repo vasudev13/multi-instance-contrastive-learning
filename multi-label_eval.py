@@ -14,7 +14,6 @@ from torchvision.models.resnet import resnet18
 import pytorch_lightning as pl
 from pytorch_lightning.loggers import WandbLogger
 from sklearn.metrics import roc_auc_score
-from barlow.py import  BarlowTwins
 
 import torch 
 from PIL import Image
@@ -129,7 +128,11 @@ model_save_checkpoint = pl.callbacks.ModelCheckpoint(
     mode = 'min',
 )
 
-encoder =  BarlowTwins.load_from_checkpoint("/scratch/va2134/models/contrastive/models/barlow-resnet18-epoch=41-val_loss=10.83.ckpt").encoder
+encoder =  resnet18(pretrained = False)
+encoder.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
+encoder.maxpool = nn.MaxPool2d(kernel_size=1, stride=1)
+encoder.fc = nn.Identity()
+encoder2.load_state_dict(torch.load('/scratch/va2134/encoder_13.ckpt'),map_location = device)
 
 model = CheXpertModule(
     model = encoder,

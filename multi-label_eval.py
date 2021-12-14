@@ -132,7 +132,7 @@ encoder =  resnet18(pretrained = False)
 encoder.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
 encoder.maxpool = nn.MaxPool2d(kernel_size=1, stride=1)
 encoder.fc = nn.Identity()
-encoder2.load_state_dict(torch.load('/scratch/va2134/encoder_13.ckpt'),map_location = device)
+encoder.load_state_dict(torch.load('/scratch/va2134/encoder_13.ckpt'),map_location = device)
 
 model = CheXpertModule(
     model = encoder,

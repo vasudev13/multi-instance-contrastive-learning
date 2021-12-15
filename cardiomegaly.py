@@ -11,6 +11,8 @@ import torchvision.transforms as transforms
 from torch.utils.data import Dataset
 from sklearn.metrics import roc_auc_score
 import torch.nn as nn
+import wandb
+
 
 def set_all_seeds(SEED):
     # REPRODUCIBILITY
@@ -18,7 +20,7 @@ def set_all_seeds(SEED):
     np.random.seed(SEED)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
- 
+wandb.init(project="evaluating-mia-densenet", entity="vasudev13")
 # SEED = 13
 # set_all_seeds(SEED)
 # PATH = '/scratch/va2134/densenet121_encoder.ckpt' 
@@ -162,6 +164,7 @@ for epoch in range(2):
               if best_val_auc < val_auc:
                  best_val_auc = val_auc
                  torch.save(model.state_dict(), '/scratch/va2134/edema_model.pth')
+              wandb.log({"val_auc": val_auc})
               
         print ('Epoch=%s, BatchID=%s, Val_AUC=%.4f, lr=%.4f'%(epoch, idx, val_auc,  optimizer.lr))
 

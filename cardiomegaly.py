@@ -21,6 +21,11 @@ def set_all_seeds(SEED):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 wandb.init(project="evaluating-mia-densenet", entity="vasudev13")
+wandb.config = {
+  "learning_rate": 0.05,
+  "epochs": 2,
+  "batch_size": 32
+}
 # SEED = 13
 # set_all_seeds(SEED)
 # PATH = '/scratch/va2134/densenet121_encoder.ckpt' 
@@ -164,7 +169,7 @@ for epoch in range(2):
               if best_val_auc < val_auc:
                  best_val_auc = val_auc
                  torch.save(model.state_dict(), '/scratch/va2134/edema_model.pth')
-              wandb.log({"val_auc": val_auc})
+              wandb.log({"cardiomegaly_val_auc": val_auc})
               
         print ('Epoch=%s, BatchID=%s, Val_AUC=%.4f, lr=%.4f'%(epoch, idx, val_auc,  optimizer.lr))
 

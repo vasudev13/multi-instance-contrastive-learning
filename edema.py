@@ -114,6 +114,7 @@ if True:
   model.classifier = nn.Identity()
   model.load_state_dict(state_dict, strict=False)
   model.classifier = nn.Linear(in_features=1024, out_features=1, bias=True)
+  model.cuda()
 
 # define loss & optimizer
 Loss = AUCMLoss(imratio=imratio)

@@ -29,7 +29,7 @@ model.load_state_dict(state_dict)
 model.classifier = nn.Linear(in_features=1024, out_features=5, bias=True)
 model.cuda()
 
-root = '/scratch/va2134/datasets/CheXpert/CheXpert-v1.0-small/'
+root = '/scratch/va2134/datasets/CheXpert-v1.0-small/'
 # Index: -1 denotes multi-label mode including 5 diseases
 traindSet = CheXpert(csv_path=root+'train.csv', image_root_path=root, use_upsampling=False, use_frontal=True, image_size=224, mode='train', class_index=-1)
 testSet =  CheXpert(csv_path=root+'valid.csv',  image_root_path=root, use_upsampling=False, use_frontal=True, image_size=224, mode='valid', class_index=-1)
@@ -84,7 +84,7 @@ for epoch in range(1):
 ## Edema Pre-training
 
 class_id = 1 # 0:Cardiomegaly, 1:Edema, 2:Consolidation, 3:Atelectasis, 4:Pleural Effusion 
-root = '/scratch/va2134/datasets/CheXpert/CheXpert-v1.0-small/'
+root = '/scratch/va2134/datasets/CheXpert-v1.0-small/'
 
 # You can set use_upsampling=True and pass the class name by upsampling_cols=['Cardiomegaly'] to do upsampling. This may improve the performance
 traindSet = CheXpert(csv_path=root+'train.csv', image_root_path=root, use_upsampling=True, use_frontal=True, image_size=224, mode='train', class_index=class_id)

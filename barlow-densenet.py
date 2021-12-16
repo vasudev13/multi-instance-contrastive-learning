@@ -282,7 +282,7 @@ encoder_out_dim = 1024
 z_dim = 128
 
 model = BarlowTwins.load_from_checkpoint(
-    '/scratch/va2134/models/contrastive/models/barlow-resnet18-epoch=47-val_loss=10.82.ckpt'
+    '/scratch/va2134/models/contrastive/models/barlow-resnet18-epoch=47-val_loss=10.82.ckpt',
     encoder = encoder,
     encoder_out_dim = encoder_out_dim,
     num_training_samples = len(train_dataset),
